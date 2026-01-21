@@ -1,3 +1,7 @@
+<?php
+include 'config/conn.php';
+// echo $pdo;
+?>
 <!DOCTYPE html>
 <html lang="en">
 
