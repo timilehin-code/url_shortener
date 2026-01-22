@@ -10,17 +10,24 @@ use App\Shortner\Shorten;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $originalUrl = $_POST['original_url'] ?? '';
-    if (!empty($originalUrl)) {
+
+    if (!empty($originalUrl) || !filter_var($originalUrl, FILTER_VALIDATE_URL)) {
         $shorten = new Shorten($pdo);
         $shorten->originalUrl = $originalUrl;
-        try {
-            $shortCode = $shorten->InsertUrl();
-            $_SESSION['short_code'] = $shortCode;
+        if (!$shorten->checkUrl()) {
+            try {
+                $shortCode = $shorten->InsertUrl();
+                $_SESSION['short_code'] = $shortCode;
+                header("Location:$_SERVER[HTTP_REFERER]");
+                exit();
+            } catch (PDOException $e) {
+                error_log("Error inserting URL: " . $e->getMessage());
+                $baseUrl = "Error shortening URL.";
+            }
+        } else {
+            echo  $_SESSION['short_code'];
             header("Location:$_SERVER[HTTP_REFERER]");
             exit();
-        } catch (PDOException $e) {
-            error_log("Error inserting URL: " . $e->getMessage());
-            $baseUrl = "Error shortening URL.";
         }
     }
 }

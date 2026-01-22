@@ -6,9 +6,9 @@ use App\Router\Router;
 $router = new Router();
 
 $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-$path =  trim($path, '/');  // Remove leading and trailing 
+$path =  trim($path, '/'); 
 $path = ltrim(str_replace('url_shortener', '', $path), '/');
-// echo $path . "<br>";
+
 
 $router->add("", function(){
    require 'public/views/index.php';
