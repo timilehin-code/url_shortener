@@ -95,7 +95,23 @@ button {
   padding: 10px 15px;
   display: none;
 }
+.notification-error{
+   margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 10px;
+  background: var(--error);
+  color: var(--Text);
+  width: 25%;
+  padding: 10px 15px;
+  display: none;
+}
 
+.notification-error.active {
+  display: flex;
+  z-index: 100;
+}
 .notification.active {
   display: flex;
   z-index: 100;
