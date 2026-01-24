@@ -117,6 +117,31 @@ button {
   z-index: 100;
 }
 
+.not-found-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  flex-direction: column;
+  color: var(--Text);
+}
+
+.not-found-container h1{
+  font-size: 6rem;
+}
+.not-found-container p{
+  margin-top: 20px;
+  color: var(--secondary);
+  font-size: 1.2rem;
+}
+
+.back-home-link{
+  margin-top: 15px;
+  text-decoration: none;
+  color: var(--accent-color);
+  font-weight: 500;
+}
+
 footer {
   margin-top: 8%;
 }
