@@ -16,7 +16,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $shorten->originalUrl = $originalUrl;
         if (!$shorten->checkUrl()) {
             if (!$shorten->isWebsiteUp($originalUrl)) {
-                die("The website you are trying to shorten is not reachable. Please check the URL and try again.");
+                $_SESSION['error'] = "The website is not reachable.";
+                header("Location:$_SERVER[HTTP_REFERER]");
             }
             try {
                 $shortCode = $shorten->InsertUrl();

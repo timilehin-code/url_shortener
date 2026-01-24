@@ -41,7 +41,6 @@ class Shorten
 {
     $ch = curl_init($url);
     
-    // Important settings
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);     
     curl_setopt($ch, CURLOPT_NOBODY, true);            
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);    
