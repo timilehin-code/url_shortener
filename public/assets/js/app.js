@@ -1,6 +1,7 @@
 const shortLink = document.querySelector("#short_link");
 const copyBtn = document.querySelector(".copyBtn");
 const notification = document.querySelector(".notification");
+const errorNotification = document.querySelector(".notification-error");
 if (shortLink && copyBtn && notification) {
   copyBtn.addEventListener("click", function () {
     navigator.clipboard.writeText(shortLink.value).then(function () {
@@ -14,6 +15,13 @@ if (shortLink && copyBtn && notification) {
     });
   });
 }else{
-    console.warn("elements not found");
-    
+    console.warn("elements not found"); 
+}
+
+if (!errorNotification) {
+  console.warn("no error notification found");
+}else{
+  setTimeout(() => {
+    errorNotification.classList.remove("active");
+  }, 2500);
 }
