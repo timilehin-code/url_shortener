@@ -25,7 +25,7 @@ $shortcode = $_SESSION['short_code'] ?? null;
     <meta property="og:site_name" content="Timi URL Shortener">
 
 
-    <meta property="og:image" content="<?php echo $baseUrl; ?>/public/assets/img/image.png">
+    <meta property="og:image" content="<?php echo $baseUrl; ?>public/assets/img/image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="URL Shortener preview - short links made easy">
@@ -33,11 +33,11 @@ $shortcode = $_SESSION['short_code'] ?? null;
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="URL Shortener - Timi's Tool">
     <meta name="twitter:description" content="Create short, trackable links instantly. Free forever.">
-    <meta name="twitter:image" content="<?php echo $baseUrl; ?>/public/assets/img/image.png">
-    <meta name="twitter:site" content="@Timilehin_26"> <!-- optional -->
-    <meta name="twitter:creator" content="@Timilehin_26"> <!-- optional -->
+    <meta name="twitter:image" content="<?php echo $baseUrl; ?>public/assets/img/image.png">
+    <meta name="twitter:site" content="@Timilehin_26"> 
+    <meta name="twitter:creator" content="@Timilehin_26"> 
 
-    <meta property="og:image:secure_url" content="<?php echo $baseUrl; ?>/public/assets/img/image.png">
+    <meta property="og:image:secure_url" content="<?php echo $baseUrl; ?>public/assets/img/image.png">
     <meta property="og:image:type" content="image/jpeg">
 
     <link rel="stylesheet" href="public/assets/css/app.css">
