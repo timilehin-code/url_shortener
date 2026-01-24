@@ -15,7 +15,7 @@ if (shortLink && copyBtn && notification) {
     });
   });
 }else{
-    console.warn("elements not found"); 
+    console.warn("elements not found");
 }
 
 if (!errorNotification) {

@@ -16,5 +16,7 @@ $router->add("", function(){
 $router->add("home", function(){
    require 'public/views/index.php';
 });
-
+$router->add("{shortcode}", function($shortcode){
+    require 'controllers/redirect/redirect.php';
+});
 $router->dispatch($path);

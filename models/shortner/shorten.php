@@ -37,25 +37,24 @@ class Shorten
         }
     }
 
-   function isWebsiteUp(string $url): bool
-{
-    $ch = curl_init($url);
-    
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);     
-    curl_setopt($ch, CURLOPT_NOBODY, true);            
-    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);    
-    curl_setopt($ch, CURLOPT_TIMEOUT, 10);            
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);    
-    curl_setopt($ch, CURLOPT_USERAGENT, 'Website-Checker/1.0');
-    
-    curl_exec($ch);
-    
-    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    curl_close($ch);
-    
-    // 200–399 = basically working (includes redirects)
-    return $httpCode >= 200 && $httpCode < 400;
-}
+    function isWebsiteUp(string $url): bool
+    {
+        $ch = curl_init($url);
+
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_NOBODY, true);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Website-Checker/1.0');
+
+        curl_exec($ch);
+
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+
+        return $httpCode >= 200 && $httpCode < 400;
+    }
     public function InsertUrl()
     {
         try {
@@ -80,6 +79,26 @@ class Shorten
                 } else {
                     return $shortCode;
                 }
+            }
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public function getOriginalUrl($shortCode)
+    {
+        try {
+            $sql = "SELECT long_url FROM urls WHERE short_code = ?";
+            $Prepare = $this->conn->prepare($sql);
+            if (!$Prepare) {
+                throw new PDOException("Failed to prepare statement");
+            }
+            $Prepare->execute([$shortCode]);
+            if ($Prepare->rowCount() == 1) {
+                $row = $Prepare->fetch(PDO::FETCH_ASSOC);
+                return $row['long_url'];
+            } else {
+                return null;
             }
         } catch (PDOException $e) {
             echo $e->getMessage();
