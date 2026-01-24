@@ -36,6 +36,27 @@ class Shorten
             echo $e->getMessage();
         }
     }
+
+   function isWebsiteUp(string $url): bool
+{
+    $ch = curl_init($url);
+    
+    // Important settings
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);     
+    curl_setopt($ch, CURLOPT_NOBODY, true);            
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);    
+    curl_setopt($ch, CURLOPT_TIMEOUT, 10);            
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);    
+    curl_setopt($ch, CURLOPT_USERAGENT, 'Website-Checker/1.0');
+    
+    curl_exec($ch);
+    
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+    
+    // 200–399 = basically working (includes redirects)
+    return $httpCode >= 200 && $httpCode < 400;
+}
     public function InsertUrl()
     {
         try {
