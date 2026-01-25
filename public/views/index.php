@@ -34,8 +34,8 @@ $shortcode = $_SESSION['short_code'] ?? null;
     <meta name="twitter:title" content="URL Shortener - Timi's Tool">
     <meta name="twitter:description" content="Create short, trackable links instantly. Free forever.">
     <meta name="twitter:image" content="<?php echo $baseUrl; ?>public/assets/img/image.png">
-    <meta name="twitter:site" content="@Timilehin_26"> 
-    <meta name="twitter:creator" content="@Timilehin_26"> 
+    <meta name="twitter:site" content="@Timilehin_26">
+    <meta name="twitter:creator" content="@Timilehin_26">
 
     <meta property="og:image:secure_url" content="<?php echo $baseUrl; ?>public/assets/img/image.png">
     <meta property="og:image:type" content="image/jpeg">
@@ -62,6 +62,22 @@ $shortcode = $_SESSION['short_code'] ?? null;
     }
     unset($_SESSION['error']);
     ?>
+    <?php
+    if (isset($_SESSION['success'])) {
+    ?>
+        <div class="wrapper">
+            <div class="notification-success active">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-circle-check">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z" />
+                </svg>
+                <h3><?= $_SESSION['success'] ?></h3>
+            </div>
+        </div>
+    <?php
+    }
+    unset($_SESSION['success']);
+    ?>
     <div class="wrapper">
         <div class="notification">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-circle-check">
@@ -82,7 +98,7 @@ $shortcode = $_SESSION['short_code'] ?? null;
                 </form>
             </div>
             <div class="link-input">
-                <input type="url" style="background-color:white;" name="" id="short_link" placeholder="Shortened link will appear here" value="<?php echo $baseUrl . $shortcode ?>" disabled>
+                <input type="url" style="background-color:white; color:green;" name="" id="short_link" placeholder="Shortened link will appear here" value="<?php echo $baseUrl . $shortcode ?>" disabled>
                 <button type="button" style="margin-left: 5px;" class="copyBtn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-copy">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                         <path d="M7 9.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667l0 -8.665z" />

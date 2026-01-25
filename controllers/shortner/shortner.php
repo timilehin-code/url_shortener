@@ -18,10 +18,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!$shorten->isWebsiteUp($originalUrl)) {
                 $_SESSION['error'] = "The website is not reachable.";
                 header("Location:$_SERVER[HTTP_REFERER]");
+                exit();
             }
             try {
                 $shortCode = $shorten->InsertUrl();
                 $_SESSION['short_code'] = $shortCode;
+                $_SESSION['success'] = 'link Shortened';
                 header("Location:$_SERVER[HTTP_REFERER]");
                 exit();
             } catch (PDOException $e) {
@@ -30,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         } else {
             echo  $_SESSION['short_code'];
+            $_SESSION['success'] = 'link Shortened';
             header("Location:$_SERVER[HTTP_REFERER]");
             exit();
         }

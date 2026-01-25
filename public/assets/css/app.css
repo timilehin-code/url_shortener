@@ -95,8 +95,8 @@ button {
   padding: 10px 15px;
   display: none;
 }
-.notification-error{
-   margin-top: 10px;
+.notification-error {
+  margin-top: 10px;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -112,12 +112,31 @@ button {
   display: flex;
   z-index: 100;
 }
+
+.notification-success {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 10px;
+  background: var(--Success);
+  color: var(--Text);
+  width: 25%;
+  padding: 10px 15px;
+  display: none;
+}
+
+.notification-success.active {
+  display: flex;
+  z-index: 100;
+}
+
 .notification.active {
   display: flex;
   z-index: 100;
 }
 
-.not-found-container{
+.not-found-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -126,16 +145,16 @@ button {
   color: var(--Text);
 }
 
-.not-found-container h1{
+.not-found-container h1 {
   font-size: 6rem;
 }
-.not-found-container p{
+.not-found-container p {
   margin-top: 20px;
   color: var(--secondary);
   font-size: 1.2rem;
 }
 
-.back-home-link{
+.back-home-link {
   margin-top: 15px;
   text-decoration: none;
   color: var(--accent-color);
