@@ -18,5 +18,5 @@ if ($originalUrl) {
     exit();
 } else {
     http_response_code(404);
-    echo "404 - Shortcode not found";
+    header("Location:.../../404.php");
 }
